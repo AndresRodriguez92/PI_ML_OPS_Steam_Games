@@ -31,7 +31,7 @@ async def user(genero: str):
     """
     try:
         # Cargar el DataFrame desde el archivo CSV
-        df_genero = pd.read_csv("PI_ML_OPS_Steam_Games/Data_sets_API/PlayTimeGenre.csv")
+        df_genero = pd.read_csv(r"C:\Users\ayrc2\Documents\GitHub\PI_ML_OPS_Steam_Games\Data_sets_API\PlayTimeGenre.csv")
 
         # Filtrar el DataFrame para obtener solo las filas del género especificado
         df_genero = df_genero[df_genero['genres'] == genero]
@@ -76,14 +76,14 @@ async def user(genero: str):
     """
     try:
         # Leer el archivo CSV que contiene la información del usuario para el género dado
-        df_usuario_por_genero = pd.read_csv("PI_ML_OPS_Steam_Games/Data_sets_API/UserForGenre.csv")
+        df_usuario_por_genero = pd.read_csv(r"C:\Users\ayrc2\Documents\GitHub\PI_ML_OPS_Steam_Games\Data_sets_API\UserForGenre.csv")
 
         # Filtrar datos para el género especificado
         datos_genero = df_usuario_por_genero[df_usuario_por_genero['genres'] == genero]
 
         if not datos_genero.empty:
             # Crear una lista de diccionarios para el tiempo de juego por año
-            tiempo_juego_por_anio = [{'Año': int(anio), 'Tiempo de Juego': int(tiempo_juego)} for anio, tiempo_juego in datos_genero[['Año_estreno', 'playtime_forever']].values]
+            tiempo_juego_por_anio = [{'Año': anio, 'Tiempo de Juego': tiempo_juego} for anio, tiempo_juego in datos_genero[['Año_estreno', 'playtime_forever']].values]
 
             # Crear el diccionario de salida
             resultado = {
@@ -123,7 +123,7 @@ async def user(año: int):
     """
     try:
         # Leer el archivo CSV que contiene la información de las recomendaciones para el año dado
-        recomendaciones_anio = pd.read_csv("PI_ML_OPS_Steam_Games/Data_sets_API/UsersRecommend.csv")
+        recomendaciones_anio = pd.read_csv(r"C:\Users\ayrc2\Documents\GitHub\PI_ML_OPS_Steam_Games\Data_sets_API\UsersRecommend.csv")
 
         # Verificar si hay revisiones para el año dado
         if not recomendaciones_anio.empty:
@@ -171,7 +171,7 @@ async def user(año: int):
     """
     try:
         # Leer el archivo CSV que contiene la información de las recomendaciones para el año dado
-        recomendaciones_anio_2 = pd.read_csv("PI_ML_OPS_Steam_Games/Data_sets_API/UsersNotRecommend.csv")
+        recomendaciones_anio_2 = pd.read_csv(r"C:\Users\ayrc2\Documents\GitHub\PI_ML_OPS_Steam_Games\Data_sets_API\UsersNotRecommend.csv")
 
         # Verificar si hay revisiones para el año dado
         if not recomendaciones_anio_2.empty:
@@ -222,7 +222,7 @@ async def sentiment_analysis(anio):
             -anio: 2015
     """
     # Leer el archivo CSV que contiene la información de las recomendaciones para el año dado
-    sentimiento_analysis = pd.read_csv("PI_ML_OPS_Steam_Games/Data_sets_API/sentimiento_analysis.csv")
+    sentimiento_analysis = pd.read_csv(r"C:\Users\ayrc2\Documents\GitHub\PI_ML_OPS_Steam_Games\Data_sets_API\sentimiento_analysis.csv")
     
     #Se filtran las reviews por año y las igualo al año que se ingresa en la consulta transformandolo en string 
     reviews_por_anio= sentimiento_analysis[sentimiento_analysis["release_anio"]== str(anio)]
@@ -260,7 +260,7 @@ async def recomendacion_juego(id: int):
     
         -dict Un diccionario con 5 juegos similares 
     """
-    modelo_render = pd.read_csv("PI_ML_OPS_Steam_Games/Data_sets_API/modelo_render.csv")
+    modelo_render = pd.read_csv(r"C:\Users\ayrc2\Documents\GitHub\PI_ML_OPS_Steam_Games\Data_sets_API\modelo_render.csv")
     
     game = modelo_render[modelo_render['id'] == id]
 
